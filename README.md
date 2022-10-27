@@ -68,20 +68,7 @@ It only filter and delete emails with the email detail provided.
 ```javascript
 GmailApp.getInboxThreads().forEach(thread => {
     thread.getMessages().forEach(message => {
-      // the email detail must be following below
-      const detail = {
-        'id': message.getId(),
-        'from': message.getFrom(),
-        'subject': message.getSubject(),
-        'body': message.getBody(),
-        'date': message.getDate(),
-        'thread': message.getThread(),
-        'attachments': message.getAttachments(),
-        'class': message
-      }
-
-      DeleteEmailFiltered.EmailDetailFilter(detail, options)
-
+      DeleteEmailFiltered.EmailDetailFilter(message, options)
     })
 })
 
