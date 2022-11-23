@@ -125,8 +125,8 @@ function globalFilterMatch(mailDetail = {}, filter = []){
 function getFilterFromSheet(sheetId = '', sheetName = '', path = {}){
   let output = []
 
-  if(sheetId) return output
-  if(sheetName) return output
+  if(!sheetId) return output
+  if(!sheetName) return output
   if(!TTools.isValidObject(path)) return output
 
   output = TTools.BillSheet({
