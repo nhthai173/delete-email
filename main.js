@@ -4,7 +4,7 @@ function EmailDetailFilter(message, {
   customFilter = null,
   useGlobalFilter = true,
   globalFilter = [],
-  customFuntion = {}
+  customFunction = {}
 } = {}){
 
   if(!TTools.isValidObject(message)) return
@@ -32,7 +32,7 @@ function EmailDetailFilter(message, {
 
   let isMatched = false
   let globalMatch = {matched: false}
-  let sheetMatched = {} // to run customFuntion
+  let sheetMatched = {} // to run customFunction
 
   // Skip trashed
   if(msg.class.isInTrash()) return
@@ -58,9 +58,9 @@ function EmailDetailFilter(message, {
           matchType: isMatched ? 'sheet' : 'global',
           sheetData: isMatched ? sheetMatched : {}
         })
-        if(id && TTools.isValidObject(customFuntion) && typeof customFuntion[id] === 'function'){
+        if(id && TTools.isValidObject(customFunction) && typeof customFunction[id] === 'function'){
           console.log('=> Run custom function: ', id, msg.id)
-          customFuntion[id](message)
+          customFunction[id](message)
         }else{
           console.log('=> Move to trash: ', msg.id)
           msg.class.moveToTrash()
@@ -86,7 +86,7 @@ function EmailFilter({
   filter = [],
   useGlobalFilter = true,
   customFilter = null,
-  customFuntion = null
+  customFunction = null
 } = {}){
 
   // Get global filter
@@ -105,7 +105,7 @@ function EmailFilter({
       debug,
       filter,
       customFilter,
-      customFuntion,
+      customFunction,
       useGlobalFilter,
       globalFilter
     })
